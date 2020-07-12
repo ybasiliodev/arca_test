@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div id="main">
+      <div class="text-center mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">Bussiness Finder</h1>
+      </div>
+
+  </div>
+
+{% if bussiness %}
+        {% for b in bussiness %}
+            <div class="card mb-3" style="max-width:800px; margin: auto">
+                <img class="card-img-top" src="https://static.vecteezy.com/system/resources/previews/000/414/211/non_2x/vector-different-shops-and-buildings.jpg" width=800>
+                <div class="card-body">
+                    <h5 class="card-title">About</h5>
+                    <p class="card-text">{{b.description}}</p>
+                    <h5 class="card-title">Address</h5>
+                    <p class="card-text">{{b.address}} , {{b.city}} - {{b.state}}, {{b.zip_code}}</p>
+                    <p class="card-text">Phone: {{b.phone}}</p>
+                    <p class="card-text"><small class="text-muted">in {{b.categories}} </small></p>
+                    <a href="javascript:history.back()" class="btn btn-primary">Back</a>
+                </div>
+            </div>
+        {% endfor %}
+  {% else %}
+    <p>No results</p>
+  {% endif %} 
+{% endblock %}

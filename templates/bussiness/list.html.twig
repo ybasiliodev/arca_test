@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div id="main">
+      <div class="text-center mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">Bussiness Finder {% if admin %} - Admin {% endif %} </h1>
+      </div>
+  </div>
+
+  {% if saved %}
+    <div class="alert alert-success" id="success-alert" style="display: none">
+      <button type="button" class="close" data-dismiss="alert">x</button>
+      <strong>Success! </strong> Bussiness added in database
+    </div>
+  {% endif %}
+
+  <div class="mb-4" style="max-width:800px; margin: auto;">
+      {% if search_value %}
+        <h1 class="h3 mb-3 font-weight-normal">Results for "{{ search_value }}"</h1>
+    {% endif %}
+    {% if admin %}
+    <div class="add-button" style="text-align: right;">
+      <a href="{{ path('new_bussiness') }}" style="margin-right: 20px;" class="btn btn-primary active" role="button" aria-pressed="true">Add New</a>
+    </div>
+      {% endif %}
+  </div>
+
+{% if bussiness %}
+    <table id="bussiness" class="table table-striped" style="max-width:800px; margin: auto;">
+      <tbody>
+        {% for b in bussiness %}
+          <tr>
+            <td>
+              <h6>{{ b.title }}</h6>
+              {% if b.categories %}
+                in {{ b.categories }}
+              {% endif %} 
+            </td>
+            <td style="float: right;">
+              <a href="{{ path('bussiness_details', { 'id': b.id }) }}" class="btn btn-dark">See Details</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div id="bottom" style="max-width: 800px; margin: auto; padding-top: 15px;">
+    {% if pages > 1 %}
+      <nav id="pages" style="float: right;">
+        <ul class="pagination">
+           {% for p in 1..pages %}
+              <li class="page-item">
+              <a class="page-link" href="{{ path('bussiness_search_page', { 'page': p , 'value': search_value }) }}">{{ p }}</a>
+              </li>
+            {% endfor %}
+        </ul>
+      </nav>
+      {% endif %} 
+    </div>
+  
+  {% else %}
+    <p>No results</p>
+  {% endif %} 
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Bussiness Finder
+{% endblock %}
+
+{% block body %}
+  <div id="main" style="max-width:700px; margin: auto; padding-top: 40px; padding-bottom: 40px;">
+    <form action="{{ path('bussiness_search') }}" method="GET">
+      <div class="text-center mb-4">
+        <img class="mb-4" src="https://static.vecteezy.com/system/resources/previews/000/414/211/non_2x/vector-different-shops-and-buildings.jpg" alt="" width="550" height="350">
+        <h1 class="h3 mb-3 font-weight-normal">Bussiness Finder</h1>
+      </div>
+
+      <div class="form-label-group" style="padding-bottom: 15px">
+        <input type="text" name="search_value" class="form-control" placeholder="Search using a bussiness name, category, zip code or address" required>
+      </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"><i class="fa fa-search"></i> Search</button>
+        
+    </form>
+      <a class="btn btn-lg btn-success btn-block" href="{{ path('signup') }}" style="margin-top:15px"><i class="fa fa-sign-in"></i> Sign In</a>
+      <p class="mt-5 mb-3 text-muted text-center">2020</p>
+  </div>
+{% endblock %}
